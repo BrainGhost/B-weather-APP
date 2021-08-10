@@ -6,11 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>B-Weather App</title>
     <link rel="stylesheet" href="./styles.css" />
-    <link rel="stylesheet" href="./themes/yellow.css" />
+    <!-- <link rel="stylesheet" href="./themes/.css" /> -->
   </head>
   <body>
     <!-- Wrapper -->
     <div class="container">
+      <!-- Settings -->
+      <div class="settings">
+        <div class="bg-color-container">
+          <h3 class="title">Pick your color</h3>
+          <div class="bg-color">
+            <span class="circle blue-color"></span>
+            <span class="circle active red-color"></span>
+            <span class="circle yellow-color"></span>
+            <span class="circle green-color"></span>
+          </div>
+        </div>
+
+        <div class="settings-content">
+          <h3 class="title">Sound & Dark mode</h3>
+          <div class="sound-dark-container">
+            <div class="sounds"></div>
+            <div class="dark-mode"></div>
+          </div>
+        </div>
+        <h3 class="title">SETTINGS</h3>
+      </div>
       <div class="header-container">
         <!-- bar-header -->
         <div class="header-bar"></div>
@@ -35,9 +56,16 @@
       <div class="main-content">
         <!-- Left side -->
         <div class="left-side">
+          <!-- Search input -->
+          <div class="search">
+            <div class="search-container">
+              <input type="text" name="" id="" />
+              <button>Search</button>
+            </div>
+          </div>
           <div class="timezone">
             <div class="zone-details">
-              <h1 class="temperature">16^C</h1>
+              <h1 class="temperature">16&deg;C</h1>
               <h2 class="name">
                 Nairobi,<br />
                 rongai
@@ -53,7 +81,24 @@
           </div>
         </div>
         <!-- Right side -->
-        <div class="right-side"></div>
+        <div class="right-side">
+          <!-- card container -->
+          <div class="card-container">
+            <!-- card -->
+            <div class="card">
+              <div class="name">
+                <h3>Nairobi, Rongai</h3>
+              </div>
+              <div class="details">45&deg; C</div>
+            </div>
+            <div class="card">
+              <div class="name">
+                <h3>Goma, drc</h3>
+              </div>
+              <div class="details">20&deg; C</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
