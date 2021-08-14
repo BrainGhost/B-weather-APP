@@ -1,9 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Oswald", sans-serif;
 }
 :root {
   --primary-color: #0b5fad;
@@ -14,7 +14,15 @@
   --red-color: #681b1d;
   --yellow-color: #e0c008;
   --green-color: #004f32;
+  --primary-rgba-color: #5c79946b;
 }
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+
 /* Wrapper */
 .container {
   width: 100%;
@@ -29,9 +37,10 @@
 /* Header container */
 .header-container {
   width: 100%;
-  background-color: transparent;
+  background-color: var(--text-color);
   color: var(--text-color);
   position: fixed;
+  box-shadow: 0px 10px 0.5rem rgba(0, 0, 0, 0.5);
 }
 /* bar-header */
 .header-bar {
@@ -79,7 +88,7 @@ span.bar-2 {
 span.bar-3 {
   bottom: 6px;
 }
-/* .close.bar-1 {
+.close.bar-1 {
   top: 5px;
   transform: translateY(400%) rotate(45deg);
 }
@@ -89,22 +98,19 @@ span.bar-3 {
 .close.bar-3 {
   bottom: 6px;
   transform: translateY(-400%) rotate(-45deg);
-} */
+}
 
 /* Settings */
 .settings {
   width: 120px;
   height: 180px;
-  background-color: var(--second-color);
+  background-color: var(--text-color);
   box-shadow: 5px 10px 0.5rem rgba(0, 0, 0, 0.425);
-  position: absolute;
+  position: fixed;
   top: 70px;
-  left: 0;
+  left: -100%;
   padding: 5px;
-}
-.settings div.bg-color-container {
-  border: 2px solid red;
-  padding-bottom: 20px;
+  z-index: 1;
 }
 .settings h3.title {
   font-size: 13px;
@@ -112,6 +118,9 @@ span.bar-3 {
   color: var(--primary-color);
   text-align: center;
   padding-bottom: 5px;
+}
+.settings h3.title.title-1 {
+  font-weight: 600;
 }
 .settings div.bg-color {
   display: flex;
@@ -142,27 +151,32 @@ span.circle.active {
   box-shadow: 0px 5px 0.5rem rgba(0, 0, 0, 0.425);
 }
 .settings-content {
-  border: 2px solid teal;
+  padding: 20px 0;
 }
 .sound-dark-container {
   display: flex;
   justify-content: space-evenly;
 }
-.sound-dark-container div.sounds {
-  width: 30px;
-  height: 30px;
-  background-color: yellowgreen;
-}
+
+.sound-dark-container div.sounds,
 .sound-dark-container div.dark-mode {
   width: 30px;
   height: 30px;
+  display: grid;
+  place-items: center;
+}
+.sounds img {
+  height: 25px;
+  width: 25px;
+}
+.sound-dark-container div.dark-mode {
   background-color: yellow;
 }
 /* box-time  */
 .box-time {
   background-color: var(--primary-color);
   padding: 5px;
-  box-shadow: 0px 10px 0.5rem rgba(0, 0, 0, 0.425);
+  /* box-shadow: 0px 10px 0.5rem rgba(0, 0, 0, 0.425); */
   text-align: center;
 }
 .box-time h1 {
@@ -187,12 +201,17 @@ span.circle.active {
 .left-side {
   color: var(--text-color);
   width: 100%;
-  height: 60vh;
+}
+.search,
+.timezone,
+.timezone-info {
+  width: 95%;
+  margin: auto;
 }
 .search {
   display: flex;
   justify-content: center;
-  padding: 20px 30px;
+  padding: 20px 0;
 }
 .search-container {
   background-color: var(--primary-color);
@@ -224,35 +243,45 @@ span.circle.active {
   background-color: var(--text-color);
   color: var(--primary-color);
 }
-
+.search-container img {
+  display: none;
+}
 .timezone {
   display: flex;
-  padding: 7rem 30px 10px 30px;
+  padding-top: 5rem;
   align-items: center;
 }
+
 .timezone div.zone-details {
   display: flex;
-  flex: 1;
+  width: 100%;
 }
 div h1.temperature {
   font-size: 5rem;
   font-weight: 100;
+  transform: scale(1, 2);
+}
+div.zone-details-description {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
 }
 div h2.name {
   font-size: 12px;
   font-weight: 300;
   /* will try to use flex end to bix at the bottom */
-  padding-top: 4rem;
+  flex: 1;
 }
-.timezone div.icon {
+.timezone img.icon {
   width: 70px;
   height: 70px;
   background-color: yellowgreen;
 }
 .timezone-info {
-  padding: 2px 30px;
+  padding: 22px 30px;
   display: flex;
   width: 100%;
+  margin-top: 30px;
 }
 .timezone-info h3 {
   width: 50%;
@@ -262,9 +291,38 @@ div h2.name {
 /* Right side */
 .right-side {
   width: 100%;
-  padding: 10px 30px;
+  background-color: rgba(0, 128, 128, 0.918);
+  backdrop-filter: blur(100px);
+  /* filter: blur(10px); */
+}
+.tab-menu {
+  width: 95%;
+  margin: auto;
+  padding: 10px;
+}
+ul.tab-navigation {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--primary-rgba-color);
+  border: 1px solid var(--second-color);
+  border-radius: 10px;
+  pointer-events: none;
+}
+ul.tab-navigation li {
+  color: var(--text-color);
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+}
+ul.tab-navigation li.active {
+  background-color: var(--primary-color);
+  border-radius: 10px;
 }
 .card-container {
+  position: relative;
+  width: 95%;
+  margin: auto;
+  padding: 10px;
 }
 .card {
   width: 100%;
@@ -309,10 +367,87 @@ div h2.name {
   line-height: 35px;
   z-index: 0;
 }
-
+/* larger screens */
 @media screen and (min-width: 600px) and (orientation: landscape) {
   .main-content {
     display: flex;
     flex-direction: row;
+  }
+  .left-side {
+    width: 60%;
+  }
+  .right-side {
+    width: 40%;
+    filter: blur(10px);
+  }
+  .header-container {
+    background-color: transparent;
+    box-shadow: none;
+  }
+  .box-time {
+    box-shadow: 0px 10px 0.5rem rgba(0, 0, 0, 0.425);
+  }
+}
+/* smaller bellow mobile screens "Trying to make it 100% responsive" */
+@media screen and (max-width: 350px) {
+  .timezone div.zone-details {
+    justify-content: space-around;
+  }
+  div h1.temperature {
+    font-size: 20vw;
+    transform: scale(1, 2);
+  }
+  div.zone-details-description {
+    display: flex;
+    width: auto;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  div h2.name {
+    padding-top: 10px;
+  }
+  .timezone-info {
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    padding: 10px;
+    display: flex;
+  }
+  .timezone-info h3 {
+    padding-top: 10px;
+    width: 100%;
+  }
+  ul.tab-navigation li {
+    font-size: 4vw;
+    padding: 5px 2px;
+  }
+
+  .search-container {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: 0px 10px 0.5rem rgba(0, 0, 0, 0.425);
+    border-bottom: 1px solid var(--primary-color);
+  }
+
+  .search-container input {
+    font-size: 4vw;
+    transition: background-color 500ms ease;
+  }
+  .search-container button {
+    display: none;
+  }
+  .search-container input:focus {
+    background-color: var(--text-color);
+  }
+  /* search icon */
+  .search-container img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* card */
+  .card div.details {
+    font-size: 5vw;
   }
 }
