@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>B-Weather App</title>
     <link rel="stylesheet" href="./styles.css" />
-    <!-- <link rel="stylesheet" href="./themes/.css" /> -->
+    <link rel="stylesheet" href="./themes/assets/css/themify-icons.css" />
+    <link rel="stylesheet" href="./themes/green.css" />
   </head>
   <body>
     <!-- Wrapper -->
+    <div id="loader" class="loader"></div>
     <div class="container">
       <!-- Settings -->
       <div class="settings">
@@ -27,9 +29,11 @@
           <h3 class="title">Sound & Dark mode</h3>
           <div class="sound-dark-container">
             <div class="sounds">
-              <img src="./images/sound-off.png" alt="" />
+              <i class="ti-volume"></i>
             </div>
-            <div class="dark-mode"></div>
+            <div class="dark-mode">
+              <i class="ti-reload"></i>
+            </div>
           </div>
         </div>
         <h3 class="title title-1">SETTINGS</h3>
@@ -47,6 +51,7 @@
               <span class="bar bar-3"></span>
             </div>
           </div>
+          <h3>B-Weather</h3>
           <!-- box-time -->
           <div class="box-time">
             <h1>Nairobi</h1>
@@ -63,12 +68,7 @@
             <div class="search-container">
               <input type="text" name="" id="" />
               <button>Search</button>
-              <img
-                src="./images/sound-on.png"
-                width="15px"
-                height="15px"
-                alt=""
-              />
+              <i class="ti-search"></i>
             </div>
           </div>
           <div class="timezone">
@@ -79,7 +79,7 @@
                   Nairobi,<br />
                   rongai
                 </h2>
-                <img class="icon" src="" alt="" />
+                <i class="icon ti-soundcloud"></i>
               </div>
             </div>
           </div>
@@ -107,12 +107,70 @@
             <!-- card -->
             <div class="card">
               <div class="name">
+                <div class="fav-icon">
+                  <i class="ti-star"></i>
+                  <i class="ti-trash"></i>
+                </div>
                 <h3>Nairobi, Rongai</h3>
               </div>
               <div class="details">45&deg; C</div>
             </div>
             <div class="card">
               <div class="name">
+                <div class="fav-icon">
+                  <i class="ti-star"></i>
+                  <i class="ti-trash"></i>
+                </div>
+                <h3>Goma, drc</h3>
+              </div>
+              <div class="details">20&deg; C</div>
+            </div>
+            <div class="card">
+              <div class="name">
+                <div class="fav-icon">
+                  <i class="ti-star"></i>
+                  <i class="ti-trash"></i>
+                </div>
+                <h3>Goma, drc</h3>
+              </div>
+              <div class="details">20&deg; C</div>
+            </div>
+            <div class="card">
+              <div class="name">
+                <div class="fav-icon">
+                  <i class="ti-star"></i>
+                  <i class="ti-trash"></i>
+                </div>
+                <h3>Goma, drc</h3>
+              </div>
+              <div class="details">20&deg; C</div>
+            </div>
+            <div class="card">
+              <div class="name">
+                <div class="fav-icon">
+                  <i class="ti-star"></i>
+                  <i class="ti-trash"></i>
+                </div>
+                <h3>Goma, drc</h3>
+              </div>
+              <div class="details">20&deg; C</div>
+            </div>
+            <div class="card">
+              <div class="name">
+                <div class="fav-icon">
+                  <i class="ti-star"></i>
+                  <i class="ti-trash"></i>
+                </div>
+                <h3>Goma, drc</h3>
+              </div>
+              <div class="details">20&deg; C</div>
+            </div>
+            <div class="card">
+              <div class="name">
+                <div class="fav-icon">
+                  <i class="ti-star"></i>
+                  <i class="ti-trash"></i>
+                </div>
                 <h3>Goma, drc</h3>
               </div>
               <div class="details">20&deg; C</div>
@@ -120,6 +178,28 @@
           </div>
         </div>
       </div>
+      <!-- Bottom navigation -->
+      <div class="bottom-nav">
+        <div class="bottom-nav-container">
+          <div class="bt-nav">
+            <i class="ti-calendar"></i>
+            <h3>Today</h3>
+          </div>
+          <div class="bt-nav">
+            <i class="ti-alarm-clock"></i>
+            <h3>Hourly</h3>
+          </div>
+          <div class="bt-nav">
+            <i class="ti-stats-up"></i>
+            <h3>10 Days</h3>
+          </div>
+          <div class="bt-nav">
+            <i class="ti-target"></i>
+            <h3>Radar</h3>
+          </div>
+        </div>
+      </div>
     </div>
+    <script src="./app.js"></script>
   </body>
 </html>
