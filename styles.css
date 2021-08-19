@@ -23,27 +23,58 @@ li {
   list-style: none;
 }
 /* Loaading effect */
-#loader {
+/* #loader {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   margin: auto;
+  display: none;
 }
 .loader {
-  border: 12px solid var(--primary-color);
-  border-radius: 50%;
-  border-top: 12px solid gray;
+  border: 8px solid var(--primary-color);
+  border-radius: 100%;
+  border-top: 8px solid gray;
   width: 70px;
   height: 70px;
   animation: spin 1s linear infinite;
+} */
+.loading {
+  background-color: var(--primary-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+}
+.loading h1 {
+  color: var(--text-color);
+  font-weight: 300;
+  font-size: 2rem;
+  animation: spin 1s linear infinite alternate;
 }
 @keyframes spin {
-  100% {
+  /* 100% {
     transform: rotate(360deg);
+  } */
+  to {
+    opacity: 0;
   }
 }
+.loading.hidden {
+  animation: fadeOut 1s forwards;
+}
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 /* Wrapper */
 .container {
   width: 100%;
@@ -56,8 +87,8 @@ li {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  transition: all 10s ease;
-  animation: cloud_illusion 1.9s ease-out;
+  /* transition: all 10s ease;
+  animation: cloud_illusion 1.9s ease-out; */
 }
 /* @keyframes cloud_illusion {
   0% {
@@ -75,6 +106,7 @@ li {
   top: 9vh;
   left: 0;
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: 998;
 }
 /* Header container */
 .header-container {
@@ -83,6 +115,7 @@ li {
   color: var(--text-color);
   position: fixed;
   box-shadow: 0px 10px 0.5rem rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 /* bar-header */
 .header-bar {
@@ -174,17 +207,17 @@ div.bottom-nav {
 .bt-nav {
   color: var(--primary-color);
   text-align: center;
+  cursor: pointer;
   transition: all 500ms ease;
 }
 .bt-nav:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 .bt-nav i {
-  font-size: 25px;
+  font-size: 18px;
 }
 .bt-nav h3 {
-  padding-top: 5px;
-  font-size: 12px;
+  font-size: 11px;
 }
 /* Settings */
 .settings {
@@ -196,7 +229,7 @@ div.bottom-nav {
   top: 70px;
   left: -100%;
   padding: 5px;
-  z-index: 1;
+  z-index: 999;
   transition: left 800ms ease;
 }
 .open.settings {
@@ -288,7 +321,6 @@ span.circle.active {
   padding-top: 80px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   /* filter: blur(10px); */
   height: 100%;
 }
@@ -297,7 +329,7 @@ span.circle.active {
   color: var(--text-color);
   width: 100%;
 }
-.search,
+
 .timezone,
 .timezone-info {
   width: 95%;
@@ -307,10 +339,13 @@ span.circle.active {
   display: flex;
   justify-content: center;
   padding: 20px 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 }
 .search-container {
   background-color: var(--primary-color);
-  width: 100%;
+  width: 95%;
   padding: 0 5px;
   box-shadow: 0px 10px 0.5rem rgba(0, 0, 0, 0.425);
   border-radius: 5px;
@@ -321,9 +356,11 @@ span.circle.active {
   border: none;
   outline: none;
   color: var(--primary-color);
+  background-color: var(--text-color);
   padding: 5px;
   font-size: 12px;
-  font-weight: 200;
+  letter-spacing: 1px;
+  font-weight: 500;
   text-transform: uppercase;
 }
 .search-container button {
@@ -335,8 +372,7 @@ span.circle.active {
   transition: background 500ms ease;
 }
 .search-container button:hover {
-  background-color: var(--text-color);
-  color: var(--primary-color);
+  background-color: rgba(0, 0, 0, 0.25);
 }
 .search-container i {
   display: none;
@@ -372,9 +408,8 @@ div h2.name {
   color: var(--primary-color);
 }
 .timezone-info {
-  padding: 22px 30px;
+  padding: 22px 0;
   display: flex;
-  width: 100%;
   margin-top: 30px;
 }
 .timezone-info h3 {
@@ -388,6 +423,7 @@ div h2.name {
   /* background-color: var(--primary-color); */
   backdrop-filter: blur(100px);
   height: 100%;
+  padding-bottom: 8vh;
 }
 .tab-menu {
   width: 95%;
@@ -427,45 +463,79 @@ ul.tab-navigation li.active {
   height: 40px;
   box-shadow: 0px 10px 0.5rem rgba(0, 0, 0, 0.219);
   margin-bottom: 10px;
+  background-color: var(--primary-color);
   /* effect on card */
   position: relative;
+  transition: transform 500ms linear, height 800ms, opacity 800ms;
 }
 
 .card div.name {
   position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  /* border-radius: 5px; */
+
+  display: flex;
+  align-items: center;
+}
+
+.name button.trash-icon {
+  background-color: var(--primary-color);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 300ms linear;
+}
+.name button.trash-icon:hover {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+.name button.trash-icon i {
+  font-size: 20px;
+  color: var(--text-color);
+  margin: 0 5px;
+}
+.ti-trash {
+  pointer-events: none;
+}
+/* effect when deleting and adding a card */
+.deleteEffect {
+  opacity: 0;
+  height: 0;
+  transform: translateX(-100%);
+}
+/* .addEffect {
+  animation: addedEffect 500ms linear forwards;
+}
+@keyframes addedEffect {
+  0% {
+    opacity: 0;
+    transform: translateY(-400px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} */
+
+.name h3 {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 200;
+  line-height: 35px;
+  color: var(--text-color);
+  background-color: var(--primary-color);
   box-shadow: 10px 0px 0.5rem rgba(0, 0, 0, 0.219);
   width: 100%;
   height: 100%;
-  background-color: var(--primary-color);
-  color: var(--text-color);
-  text-transform: uppercase;
-  font-size: 9px;
-  font-weight: 200;
-  line-height: 35px;
-  transition: width 500ms ease-in;
-  z-index: 1;
-  /* border-radius: 5px; */
-  border-bottom-right-radius: 15px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-.card div.name:hover {
-  width: 80%;
-}
-.name div.fav-icon {
-  background-color: rgba(0, 0, 0, 0.3);
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-.name div.fav-icon i {
-  font-size: 20px;
-  color: var(--text-color);
-  margin: 0 10px;
-}
-.name h3 {
   padding-left: 10px;
+  border-bottom-right-radius: 15px;
+  transition: width 500ms ease-in;
+}
+.name h3:active {
+  width: 80%;
 }
 .card div.details {
   background-color: rgba(0, 0, 0, 0.3);
@@ -483,24 +553,68 @@ ul.tab-navigation li.active {
 /* larger screens */
 @media screen and (min-width: 600px) {
   /* and (min-height: 800px) and (orientation: landscape) */
+  .ctn::after {
+    top: 0;
+  }
   .main-content {
     display: flex;
     flex-direction: row;
   }
   .left-side {
     width: 55%;
+    padding-top: 10px;
   }
 
-  .right-side {
-    width: 45%;
-    /* backdrop-filter: blur(30px); */
-  }
   .header-container {
     background-color: transparent;
     box-shadow: none;
   }
   .box-time {
     box-shadow: 0px 10px 0.5rem rgba(0, 0, 0, 0.425);
+  }
+  div.bottom-nav {
+    display: none;
+  }
+  .header h3 {
+    color: var(--text-color);
+  }
+  .menu-burger span.bar {
+    background-color: var(--text-color);
+  }
+  /* search remove the fixed position */
+  .search {
+    position: static;
+    width: 95%;
+    margin: auto;
+  }
+  .search-container {
+    width: 100%;
+  }
+  .right-side {
+    width: 45%;
+    /* backdrop-filter: blur(30px); */
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 100px;
+    overflow: hidden;
+  }
+  .card-container {
+    overflow-y: auto;
+    height: 100%;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: var(--text-color);
+    border-radius: 100px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 100px;
+    border: 2px solid var(--text-color);
+    margin-top: 30px;
   }
 }
 /* smaller bellow mobile screens "Trying to make it 100% responsive" */
