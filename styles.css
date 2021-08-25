@@ -82,7 +82,7 @@ li {
   height: 100%;
   height: 100vh;
   /* background-color: black; */
-  background-image: url(./images/bg-1.jpg);
+  background-image: url(./images/bg-3.jpg);
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -387,7 +387,8 @@ span.circle.active {
   display: flex;
   width: 100%;
 }
-div h1.temperature {
+div h1.temperature,
+.temperature-deg {
   font-size: 5rem;
   font-weight: 100;
   transform: scale(1, 2);
@@ -397,23 +398,26 @@ div.zone-details-description {
   width: 100%;
   align-items: flex-end;
 }
-div h2.name {
+div h2.city-name {
   font-size: 12px;
   font-weight: 300;
   /* will try to use flex end to bix at the bottom */
   flex: 1;
 }
-.timezone i.icon {
+.timezone i.icon img {
   font-size: 100px;
   color: var(--primary-color);
+  filter: drop-shadow(0 0 30px var(--primary-color));
 }
 .timezone-info {
   padding: 22px 0;
   display: flex;
   margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
 }
 .timezone-info h3 {
-  width: 50%;
+  width: 33%;
   font-size: 12px;
   font-weight: 500;
 }
@@ -535,7 +539,7 @@ ul.tab-navigation li.active {
   transition: width 500ms ease-in;
 }
 .name h3:active {
-  width: 80%;
+  width: 75%;
 }
 .card div.details {
   background-color: rgba(0, 0, 0, 0.3);
@@ -632,7 +636,7 @@ ul.tab-navigation li.active {
     flex-direction: column-reverse;
     align-items: center;
   }
-  div h2.name {
+  div h2.city-name {
     padding-top: 10px;
   }
   .timezone-info {

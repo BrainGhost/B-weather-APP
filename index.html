@@ -7,7 +7,7 @@
     <title>B-Weather App</title>
     <link rel="stylesheet" href="./themes/assets/css/themify-icons.css" />
     <link rel="stylesheet" href="./styles.css" />
-    <link id="bg-link-change" rel="stylesheet" href="./themes/green.css" />
+    <link id="bg-link-change" rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <!-- Wrapper -->
@@ -21,10 +21,10 @@
         <div class="bg-color-container">
           <h3 class="title">Pick your color</h3>
           <div class="bg-color">
-            <span class="circle blue-color"></span>
-            <span class="circle active red-color"></span>
-            <span class="circle yellow-color"></span>
-            <span class="circle green-color"></span>
+            <span data-mode="blue" class="circle blue-color"></span>
+            <span data-mode="red" class="circle red-color"></span>
+            <span data-mode="yellow" class="circle yellow-color"></span>
+            <span data-mode="green" class="circle green-color"></span>
           </div>
         </div>
 
@@ -57,8 +57,8 @@
           <h3>B-Weather</h3>
           <!-- box-time -->
           <div class="box-time">
-            <h1>Nairobi</h1>
-            <span>18 : 23</span>
+            <h1 id="name">Nairobi</h1>
+            <span id="time">18 : 23</span>
           </div>
         </div>
       </div>
@@ -76,19 +76,23 @@
           </div>
           <div class="timezone">
             <div class="zone-details">
-              <h1 class="temperature">16&deg;C</h1>
+              <h1 class="temperature">16</h1>
+              <span class="temperature-deg">&deg;C</span>
               <div class="zone-details-description">
-                <h2 class="name">
+                <h2 class="city-name">
                   Nairobi,<br />
                   rongai
                 </h2>
-                <i class="icon ti-soundcloud"></i>
+                <i class="icon">
+                  <img id="city-icon" src="" alt="" />
+                </i>
               </div>
             </div>
           </div>
           <div class="timezone-info">
-            <h3>Humidity:</h3>
-            <h3>Time Zone difference:</h3>
+            <h3>Humidity: <span id="humidity"></span></h3>
+            <h3>Time Zone difference: <span id="time-diff"></span></h3>
+            <h3>Description: <span id="description"></span></h3>
           </div>
         </div>
         <!-- Right side -->
@@ -115,29 +119,9 @@
                   <i class="ti-trash"></i>
                 </button>
 
-                <h3>Nairobi, Rongai</h3>
+                <h3 id="card-name">Nairobi, Rongai</h3>
               </div>
-              <div class="details">45&deg; C</div>
-            </div>
-            <div class="card">
-              <div class="name">
-                <button class="trash-icon">
-                  <i class="ti-trash"></i>
-                </button>
-
-                <h3>Nairobi, Rongai</h3>
-              </div>
-              <div class="details">45&deg; C</div>
-            </div>
-            <div class="card">
-              <div class="name">
-                <button class="trash-icon">
-                  <i class="ti-trash"></i>
-                </button>
-
-                <h3>Nairobi, Rongai</h3>
-              </div>
-              <div class="details">45&deg; C</div>
+              <div id="card-temp" class="details">45&deg; C</div>
             </div>
           </div>
         </div>
