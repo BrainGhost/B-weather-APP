@@ -213,8 +213,8 @@ div.bottom-nav {
 .bt-nav:hover {
   transform: scale(1.05);
 }
-.bt-nav i {
-  font-size: 18px;
+.bt-nav img {
+  width: 20px;
 }
 .bt-nav h3 {
   font-size: 11px;
@@ -287,16 +287,17 @@ span.circle.active {
   place-items: center;
 }
 
-.sounds i,
-.dark-mode i {
+.sounds img,
+.dark-mode img {
   color: var(--primary-color);
-  font-size: 20px;
+  height: 35px;
+  width: 35px;
   cursor: pointer;
   padding: 8px;
   border-radius: 100px;
   transition: box-shadow 400ms ease-in;
 }
-.sound-dark-container i:hover {
+.sound-dark-container img:hover {
   box-shadow: 0px 5px 0.5rem rgba(0, 0, 0, 0.425);
 }
 /* box-time  */
@@ -374,7 +375,7 @@ span.circle.active {
 .search-container button:hover {
   background-color: rgba(0, 0, 0, 0.25);
 }
-.search-container i {
+.search-container img {
   display: none;
 }
 .timezone {
@@ -496,8 +497,8 @@ ul.tab-navigation li.active {
 .name button.trash-icon:hover {
   background-color: rgba(0, 0, 0, 0.25);
 }
-.name button.trash-icon i {
-  font-size: 20px;
+.name button.trash-icon img {
+  height: 18px;
   color: var(--text-color);
   margin: 0 5px;
 }
@@ -674,12 +675,12 @@ ul.tab-navigation li.active {
     background-color: var(--text-color);
   }
   /* search icon */
-  .search-container i {
+  .search-container img {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 5px;
-    font-size: 10px;
+    width: 40px;
     background-color: var(--primary-color);
   }
   /* card */

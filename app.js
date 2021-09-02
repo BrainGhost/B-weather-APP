@@ -114,7 +114,8 @@ function addSearch() {
     cardName.classList.add("name");
     const cardFavIcon = document.createElement("button");
     cardFavIcon.classList.add("trash-icon");
-    cardFavIcon.innerHTML = '<i class="ti-trash"></i>';
+    cardFavIcon.innerHTML =
+      '<img class="trash-icon" src="./images/icon/icons8-trash-50.png" alt="" />';
 
     const cardTitle = document.createElement("h3");
     cardTitle.innerHTML = inputSearch.value;
