@@ -100,13 +100,12 @@ let inputSearch = document.querySelector(".input-search");
 const btnSearch = document.querySelector(".btn-search");
 btnSearch.addEventListener("click", addSearch);
 
-function addSearch() {
+function addSearch(tempr, recentItem) {
   if (inputSearch.value === 0) {
     alert("message?: Please insert correct value");
   } else {
     let searchLocation = inputSearch.value;
     fetchResult(searchLocation);
-    cardAdd();
     const card = document.createElement("div");
     card.classList.add("card");
     card.classList.add("addEffect");
@@ -118,6 +117,7 @@ function addSearch() {
       '<img class="trash-icon" src="./images/icon/icons8-trash-50.png" alt="" />';
 
     const cardTitle = document.createElement("h3");
+    cardTitle.classList.add();
     cardTitle.innerHTML = inputSearch.value;
 
     cardName.appendChild(cardFavIcon);
@@ -126,10 +126,12 @@ function addSearch() {
 
     const cardDetails = document.createElement("div");
     cardDetails.classList.add("details");
+
     card.appendChild(cardDetails);
 
     cardHolder.appendChild(card);
-    inputSearch.value = "";
+    inputSearch.value = ""; //clear input after search
+    console.log(card);
   }
 }
 
@@ -139,13 +141,11 @@ cardHolder.addEventListener("click", deleteCheck);
 function deleteCheck(e) {
   const item = e.target;
   if (item.className === "trash-icon") {
-    console.log("delete");
-    const toRemove = item.parentElement.parentElement;
+    const toRemove = item.parentElement.parentElement.parentElement;
     toRemove.classList.add("deleteEffect");
     toRemove.addEventListener("transtioned", () => {
       toRemove.remove();
     });
-    console.log(toRemove);
   }
 }
 //Fetch API======================================================================>
@@ -161,34 +161,44 @@ const cityDescription = document.querySelector("#description");
 
 //variables for the API
 const apiKey = "62366ce36a3b0ee777207eb6626edd19";
+//You can use dotenv to hide this API key, but i choose not to ... wanted the project to completly public
 
 //get request
+let queriedFromSearch,
+  recentsList = JSON.parse(localStorage.getItem("recent")) || [],
+  recentModel;
 function fetchResult(location) {
   fetch(
-    // "https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&units=metric&exclude=daily&appid=62366ce36a3b0ee777207eb6626edd19"
     `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${apiKey}`
   )
     //handle success
     .then((response) => response.json()) //convert to json
     .then((data) => {
-      let temperature, humidity, description, name;
+      let temperature, humidity, description;
       temperature = data.main.temp;
       let icon =
         "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
-      name = data.name;
+      nameSearch = data.name;
 
       humidity = data.main.humidity;
       description = data.weather[0].description;
       //Fill data gotten from the API to the Interface
       cityTemp.innerText = Math.floor(temperature);
-      cityName.innerText = name;
+      cityName.innerText = nameSearch;
       cityIcon.src = icon;
       cityHumidity.innerText = humidity;
       cityDescription.innerText = description;
+
+      recentModel = {
+        Location: nameSearch,
+        favorite: false,
+      };
+
+      recentsList.push(recentModel);
+      localStorage.setItem("recent", JSON.stringify(recentsList));
+      cardAdd();
     }) //print data to console
     .catch((err) => alert("Could not fetch data for that city")); //catch errors
-
-  cardAdd(cityName, cityTemp);
 }
 // Get the current user location
 let latitude, longitude;
@@ -229,10 +239,19 @@ function getUserTime() {
 //Use the other API to fetch data for 10 days, hourly etc
 
 // get the Item search to display in the cards
-function cardAdd(cityName, cityTemp) {
-  const cardName = (document.querySelectorAll("h3#card-name").innerText =
-    cityName);
-  const cardTemp = (document.querySelectorAll("div#card-temp").innerText =
-    cityTemp);
-  console.log(cardName, cardTemp);
+function cardAdd() {
+  console.log(recentsList);
+  recentsList.forEach((recentItem) => {
+    let nameLocation = recentItem.Location;
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${nameLocation}&units=metric&appid=${apiKey}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        let tempr = Math.floor(data.main.temp);
+
+        // addSearch(tempr, recentItem);
+      })
+      .catch((err) => alert(err));
+  });
 }
